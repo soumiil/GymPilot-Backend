@@ -5,14 +5,18 @@ import cookieParser from "cookie-parser";
 const app = express();
 
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
-    credentials: true
+    origin: process.env.CORS_ORIGIN
 }));
+console.log('CORS ORIGIN APP.JS',process.env.CORS_ORIGIN)
 app.use(express.json({
     limit: "16kb"
 }))
 app.use(urlencoded());
 app.use(express.static("public"));
 app.use(cookieParser());
+
+app.get('/api/test', (req, res) => {
+    res.json("Hello World")
+})
 
 export default app;
